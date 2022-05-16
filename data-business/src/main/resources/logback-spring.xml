@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="false">
+    <!--如果需要启用颜色的话就需要包含这个配置文件
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    -->
+
+    <springProperty scop="context" name="appName" source="spring.application.name" defaultValue="dev"/>
+    <springProperty scop="context" name="rootLevel" source="logger.level" defaultValue="INFO"/>
+    <springProperty scop="context" name="log.path" source="log.path" defaultValue="logs"/>
+
+    <property name="log.path" value="${log.path}" />
+
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} [%thread] [%logger{50}] - %msg%n"/>
+
+    <!-- 控制台打印日志的相关配置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 日志格式 -->
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!--debug级别日志输出器-->
+    <appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--记录的日志文件的路径及文件名-->
+        <file>${log.path}/debug.log</file>
+
+        <!--记录的日志级别-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!--日志文件输出格式-->
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+        <!--日志记录器的滚动策略，按日期，按大小记录-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/%d{yyyy-MM,aux}/debug.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <!--error级别日志输出器-->
+    <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--记录的日志文件的路径及文件名-->
+        <file>${log.path}/error.log</file>
+
+        <!--记录的日志级别-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!--日志文件输出格式-->
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+        <!--日志记录器的滚动策略，按日期，按大小记录-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/%d{yyyy-MM,aux}/error.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+
+    <!--info级别日志输出器-->
+    <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--记录的日志文件的路径及文件名-->
+        <file>${log.path}/info.log</file>
+
+        <!--记录的日志级别-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <!--日志文件输出格式-->
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+        <!--日志记录器的滚动策略，按日期，按大小记录-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/%d{yyyy-MM,aux}/info.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <!--
+        log level:TRACE,DEBUG,INFO,WARN,ERROR,ALL,OFF
+        <appender-ref ref="FILE-INFO"/>
+    -->
+    <root level="${rootLevel}">
+        <springProfile name="local,dev,test">
+            <appender-ref ref="STDOUT"/>
+        </springProfile>
+        <springProfile name="local,dev,test">
+            <appender-ref ref="FILE-DEBUG"/>
+        </springProfile>
+        <appender-ref ref="FILE-ERROR"/>
+        <appender-ref ref="FILE-INFO"/>
+    </root>
+</configuration>
