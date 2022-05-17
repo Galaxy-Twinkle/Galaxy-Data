@@ -1,4 +1,4 @@
-package com.galaxy.data.entity;
+package com.galaxy.data.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;

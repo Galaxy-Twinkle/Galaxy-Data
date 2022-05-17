@@ -1,15 +1,15 @@
-package com.galaxy.data.controller;
+package com.galaxy.data.controller.test;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.galaxy.data.common.Result;
-import com.galaxy.data.common.constants.ApiGroupTags;
+import com.galaxy.data.common.constants.ApiGroupTagConstants;
 import com.galaxy.data.common.constants.ApiUrlConstants;
-import com.galaxy.data.entity.TestEntity;
-import com.galaxy.data.service.TestService;
+import com.galaxy.data.system.entity.TestEntity;
+import com.galaxy.data.system.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author yao.qian
  */
-@RestController
-@Api(tags = ApiGroupTags.TEST_API_TAG)
+@Api(tags = ApiGroupTagConstants.TEST_API_TAG)
+@RestController(value = ApiUrlConstants.BACKSTAGE_URL_PREFIX + "/user")
 public class TestController {
 
     private final TestService testService;
@@ -30,14 +30,14 @@ public class TestController {
     }
 
     @ApiOperation(value = "Test Api")
-    @GetMapping(ApiUrlConstants.TEST_URL_PREFIX + "/api")
+    @PostMapping("/create")
     public Result testApi(@RequestBody TestEntity testEntity) {
         return Result.expect(testService.testApi(testEntity));
     }
 
-    @ApiOperation(value = "Test Api")
-    @GetMapping(ApiUrlConstants.TEST_URL_PREFIX + "/list")
-    public Result<TestEntity> list(TestEntity testEntity) {
-        return Result.data(testService.list(new LambdaQueryWrapper<TestEntity>()));
+    @ApiOperation(value = "获取测试用户列表")
+    @GetMapping("/list")
+    public Result<TestEntity> list(TestEntity entity) {
+        return Result.data(testService.list());
     }
 }

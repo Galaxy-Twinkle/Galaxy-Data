@@ -1,7 +1,7 @@
-package com.galaxy.data.mapper;
+package com.galaxy.data.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.galaxy.data.entity.TestEntity;
+import com.galaxy.data.system.entity.TestEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

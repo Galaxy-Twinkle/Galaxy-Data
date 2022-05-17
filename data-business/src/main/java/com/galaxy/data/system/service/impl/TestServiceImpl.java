@@ -1,11 +1,11 @@
-package com.galaxy.data.service.impl;
+package com.galaxy.data.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.galaxy.data.common.utils.AesUtil;
 import com.galaxy.data.common.utils.RandomUtil;
-import com.galaxy.data.entity.TestEntity;
-import com.galaxy.data.mapper.TestMapper;
-import com.galaxy.data.service.TestService;
+import com.galaxy.data.system.entity.TestEntity;
+import com.galaxy.data.system.mapper.TestMapper;
+import com.galaxy.data.system.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,7 @@
-package com.galaxy.data.service;
+package com.galaxy.data.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.galaxy.data.entity.TestEntity;
+import com.galaxy.data.system.entity.TestEntity;
 
 /**
  * @author yao.qian

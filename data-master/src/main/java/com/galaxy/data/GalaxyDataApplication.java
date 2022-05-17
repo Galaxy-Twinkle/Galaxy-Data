@@ -7,10 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author yao.qian
  */
 @SpringBootApplication
-public class DataAdminApplication {
+public class GalaxyDataApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DataAdminApplication.class, args);
+        SpringApplication.run(GalaxyDataApplication.class, args);
     }
-
 }

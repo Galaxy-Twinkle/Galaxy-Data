@@ -1,4 +1,4 @@
-package com.galaxy.data.config;
+package com.galaxy.data.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

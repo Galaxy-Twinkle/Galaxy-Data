@@ -6,6 +6,7 @@
     <modules>
         <module>data-common</module>
         <module>data-business</module>
+        <module>data-master</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -109,21 +110,21 @@
             <version>${druid.version}</version>
         </dependency>
 
-        <!-- MybatisPlus -->
+        <!-- ORM MybatisPlus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisplus.version}</version>
         </dependency>
 
-        <!--hutool jar-->
+        <!-- hutool Utils -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
 
-        <!--考虑到Hutool的非强制依赖性，因此zxing需要用户自行引入-->
+        <!-- 二维码 -->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
